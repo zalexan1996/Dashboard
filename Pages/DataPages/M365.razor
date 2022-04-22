@@ -1,0 +1,21 @@
+@implements Dashboard.Data.DataPage
+
+<h2>Microsoft 365</h2>
+
+<GraphPane>
+    <Dashboard.Pages.DataPoints.M365.TotalMailboxUsage/>
+    <Dashboard.Pages.DataPoints.M365.LicenseStatistics/>
+    <Dashboard.Pages.DataPoints.M365.M365AuditLog/>
+    <Dashboard.Pages.DataPoints.M365.MailflowStatistics/>
+    <Dashboard.Pages.DataPoints.M365.QuarantinedEmails/>
+    <Dashboard.Pages.DataPoints.M365.QuarantinedMobileDevices/>
+    <Dashboard.Pages.DataPoints.M365.UnlicensedUsers/>
+</GraphPane>
+
+@code {
+    public void Get()
+    {
+        
+    }
+
+}

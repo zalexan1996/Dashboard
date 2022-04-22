@@ -1,0 +1,18 @@
+@implements Dashboard.Data.DataPage
+
+<h1>Active Directory</h1>
+
+<GraphPane>
+    <Dashboard.Pages.DataPoints.ActiveDirectory.ActiveVPNUsers/>
+    <Dashboard.Pages.DataPoints.ActiveDirectory.ADAuditLog/>
+    <Dashboard.Pages.DataPoints.ActiveDirectory.LockedOutUsers/>
+    <Dashboard.Pages.DataPoints.ActiveDirectory.TotalADObjectStatistics/>
+</GraphPane>
+
+@code {
+    public void Get()
+    {
+        
+    }
+
+}

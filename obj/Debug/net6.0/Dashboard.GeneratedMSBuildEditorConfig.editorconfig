@@ -1,0 +1,124 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Dashboard
+build_property.RootNamespace = Dashboard
+build_property.ProjectDir = F:\C#\Dashboard\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = F:\C#\Dashboard
+build_property._RazorSourceGeneratorDebug = 
+
+[F:/C\#/Dashboard/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/C\#/Dashboard/Pages/DataPages/ActiveDirectory.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YVBhZ2VzXEFjdGl2ZURpcmVjdG9yeS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/C\#/Dashboard/Pages/DataPages/Knowbe4.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YVBhZ2VzXEtub3diZTQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/C\#/Dashboard/Pages/DataPages/M365.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YVBhZ2VzXE0zNjUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/C\#/Dashboard/Pages/DataPoints/ActiveDirectory/ActiveVPNUsers.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YVBvaW50c1xBY3RpdmVEaXJlY3RvcnlcQWN0aXZlVlBOVXNlcnMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/C\#/Dashboard/Pages/DataPoints/ActiveDirectory/ADAuditLog.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YVBvaW50c1xBY3RpdmVEaXJlY3RvcnlcQURBdWRpdExvZy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/C\#/Dashboard/Pages/DataPoints/ActiveDirectory/LockedOutUsers.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YVBvaW50c1xBY3RpdmVEaXJlY3RvcnlcTG9ja2VkT3V0VXNlcnMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/C\#/Dashboard/Pages/DataPoints/ActiveDirectory/TotalADObjectStatistics.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YVBvaW50c1xBY3RpdmVEaXJlY3RvcnlcVG90YWxBRE9iamVjdFN0YXRpc3RpY3MucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/C\#/Dashboard/Pages/DataPoints/Knowbe4/ActiveCampaigns.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YVBvaW50c1xLbm93YmU0XEFjdGl2ZUNhbXBhaWducy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/C\#/Dashboard/Pages/DataPoints/Knowbe4/EnrolledTrainees.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YVBvaW50c1xLbm93YmU0XEVucm9sbGVkVHJhaW5lZXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/C\#/Dashboard/Pages/DataPoints/Knowbe4/PhishScoreByDepartment.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YVBvaW50c1xLbm93YmU0XFBoaXNoU2NvcmVCeURlcGFydG1lbnQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/C\#/Dashboard/Pages/DataPoints/Knowbe4/PhishScoreOverTime.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YVBvaW50c1xLbm93YmU0XFBoaXNoU2NvcmVPdmVyVGltZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/C\#/Dashboard/Pages/DataPoints/M365/LicenseStatistics.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YVBvaW50c1xNMzY1XExpY2Vuc2VTdGF0aXN0aWNzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/C\#/Dashboard/Pages/DataPoints/M365/M365AuditLog.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YVBvaW50c1xNMzY1XE0zNjVBdWRpdExvZy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/C\#/Dashboard/Pages/DataPoints/M365/MailflowStatistics.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YVBvaW50c1xNMzY1XE1haWxmbG93U3RhdGlzdGljcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/C\#/Dashboard/Pages/DataPoints/M365/QuarantinedEmails.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YVBvaW50c1xNMzY1XFF1YXJhbnRpbmVkRW1haWxzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/C\#/Dashboard/Pages/DataPoints/M365/QuarantinedMobileDevices.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YVBvaW50c1xNMzY1XFF1YXJhbnRpbmVkTW9iaWxlRGV2aWNlcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/C\#/Dashboard/Pages/DataPoints/M365/TotalMailboxUsage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YVBvaW50c1xNMzY1XFRvdGFsTWFpbGJveFVzYWdlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/C\#/Dashboard/Pages/DataPoints/M365/UnlicensedUsers.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YVBvaW50c1xNMzY1XFVubGljZW5zZWRVc2Vycy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/C\#/Dashboard/Shared/DataPointWrapper.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXERhdGFQb2ludFdyYXBwZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/C\#/Dashboard/Shared/GraphPane.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEdyYXBoUGFuZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/C\#/Dashboard/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/C\#/Dashboard/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-fkzns3sacs
+
+[F:/C\#/Dashboard/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-oicp5eis7n
+
+[F:/C\#/Dashboard/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/C\#/Dashboard/Pages/_Host.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hvc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/C\#/Dashboard/Pages/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0xheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

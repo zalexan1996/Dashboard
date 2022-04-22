@@ -1,0 +1,19 @@
+
+<div class="card m-1">
+    <div class="card-header">
+        <b>@Title</b>
+    </div>
+    <div class="card-body">
+        @ChildContent
+    </div>
+</div>
+
+
+
+@code {
+    [Parameter]
+    public string? Title {get; set;} = "Title";
+    
+    [Parameter]
+    public RenderFragment? ChildContent {get; set;}
+}

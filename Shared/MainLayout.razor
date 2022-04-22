@@ -1,0 +1,85 @@
+﻿@inherits LayoutComponentBase
+@implements IDisposable
+
+<PageTitle>Dashboard</PageTitle>
+
+<div>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <div class="container-fluid">
+            <div class="px-3">
+                <a style="display: block; text-align: center;" class="navbar-brand" href="/">Dashboard</a>
+                <p style="display: block; text-align: center;" class="navbar-item text-secondary" href="/">By Zach</p>
+            </div>
+            <div class="navbar-collapse" id="mynavbar">
+                <div class="navbar-nav btn-group me-auto">
+                    <button class="nav-item btn btn-secondary @(CurrentPage == 0 ? "active" : "")">Active Directory</button>
+                    <button class="nav-item btn btn-secondary @(CurrentPage == 1 ? "active" : "")">M365</button>
+                    <button class="nav-item btn btn-secondary @(CurrentPage == 2 ? "active" : "")">Knowbe4</button>
+                </div>
+
+                <div class="navbar-nav">
+                    <button class="px-2 mx-1 btn btn-dark" type="button"><span class="oi oi-question-mark"></span></button>
+                    <button class="px-2 mx-1 btn btn-dark" type="button"><span class="oi oi-reload"></span></button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div style="display: block;">
+        @Body
+    </div>
+</div>
+
+
+
+@code {
+    // Stay on each page for 60 seconds.
+    public int PageDuration {get; set;} = 3;
+    
+    // The page that we're currently on.
+    public int CurrentPage {get; set;} = 0;
+
+    // The number of pages that we'll be displaying
+    public int NumPages {get; set;} = 3;
+
+    // The timer used to control when the pages switch
+    protected System.Threading.Timer? PageTimer {get; set;}
+
+
+
+    // The event that is called when the page changes
+    public static event PageChangedDelegate? PageChanged;
+
+
+
+
+
+    protected override void OnInitialized()
+    {
+        if (PageTimer == null)
+        {
+            var autoEvent = new AutoResetEvent(false);
+            PageTimer = new System.Threading.Timer(OnTimerTick, autoEvent, PageDuration * 1000, PageDuration * 1000);
+        }
+    }
+
+
+    protected void OnTimerTick(object? state)
+    {
+        CurrentPage = (CurrentPage + 1) % NumPages;
+        
+        InvokeAsync(StateHasChanged);
+        PageChanged?.Invoke(CurrentPage);
+    }
+
+
+    public void Dispose()
+    {
+        PageTimer?.Dispose();
+    }
+
+
+    public delegate void PageChangedDelegate(int newPage);
+
+
+}
