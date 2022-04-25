@@ -1,5 +1,23 @@
 <DataPointWrapper Title="Total Mailbox Usage">
-    <p>
-        Graph goes here
-    </p>
+	<Table TableData=@Data/>
 </DataPointWrapper>
+
+
+@code {
+	Data.Table.Table Data = new Data.Table.Table()
+	{
+		ColumnInfo =
+		{
+			new Data.Table.ColumnInfo() { Name = "Event" },
+			new Data.Table.ColumnInfo() { Name = "Direction" },
+			new Data.Table.ColumnInfo() { Name = "Message Count" }
+		},
+		Data =
+		{
+			new string[] {"GoodMail", "Inbound", "3170"},
+			new string[] {"GoodMail", "Outbound", "5"},
+			new string[] {"EmailPhish", "Inbound", "20"},
+			new string[] {"GoodMail", "Outbound", "10"}
+		}
+	};
+}

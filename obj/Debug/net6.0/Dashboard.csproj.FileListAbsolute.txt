@@ -25,3 +25,4 @@ F:\C#\Dashboard\obj\Debug\net6.0\Dashboard.pdb
 F:\C#\Dashboard\obj\Debug\net6.0\Dashboard.genruntimeconfig.cache
 F:\C#\Dashboard\obj\Debug\net6.0\ref\Dashboard.dll
 F:\C#\Dashboard\obj\Debug\net6.0\scopedcss\Pages\Index.razor.rz.scp.css
+F:\C#\Dashboard\obj\Debug\net6.0\scopedcss\Shared\Table.razor.rz.scp.css

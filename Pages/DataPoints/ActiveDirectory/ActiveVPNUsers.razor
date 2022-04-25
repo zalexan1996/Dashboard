@@ -1,5 +1,24 @@
 <DataPointWrapper Title="Active VPN Users">
-    <p>
-        Graph goes here
-    </p>
+    <Table TableData=@Data/>
 </DataPointWrapper>
+
+
+@code {
+    public Data.Table.Table Data = new Data.Table.Table()
+    {
+        ColumnInfo =
+        {
+            new Data.Table.ColumnInfo() { Name = "User" },
+            new Data.Table.ColumnInfo() { Name = "Active Since" },
+            new Data.Table.ColumnInfo() { Name = "Data (Mb)" }
+        },
+        Data =
+        {
+            new string[] {"Zach Alexander",     "02:01 AM", "66.0Mb"},
+            new string[] {"Kurtis Cleveland",   "10:19 AM", "100.6Mb"},
+            new string[] {"Sebastian Archer",   "05:52 AM", "0.6Mb"},
+            new string[] {"Astrid Delarosa",    "09:40 AM", "217.6Mb"},
+            new string[] {"Anastasia Franklin", "06:23 AM", "2.6Mb"}
+        }
+    };
+}

@@ -16,10 +16,9 @@
                     <button class="nav-item btn btn-secondary @(CurrentPage == 1 ? "active" : "")">M365</button>
                     <button class="nav-item btn btn-secondary @(CurrentPage == 2 ? "active" : "")">Knowbe4</button>
                 </div>
-
                 <div class="navbar-nav">
                     <button class="px-2 mx-1 btn btn-dark" type="button"><span class="oi oi-question-mark"></span></button>
-                    <button class="px-2 mx-1 btn btn-dark" type="button"><span class="oi oi-reload"></span></button>
+                    <button @onclick="@OnStop" class="px-2 mx-1 btn btn-dark" type="button"><span class="oi oi-reload"></span></button>
                 </div>
             </div>
         </div>
@@ -35,7 +34,7 @@
 @code {
     // Stay on each page for 60 seconds.
     public int PageDuration {get; set;} = 3;
-    
+
     // The page that we're currently on.
     public int CurrentPage {get; set;} = 0;
 
@@ -51,9 +50,6 @@
     public static event PageChangedDelegate? PageChanged;
 
 
-
-
-
     protected override void OnInitialized()
     {
         if (PageTimer == null)
@@ -64,12 +60,21 @@
     }
 
 
+    protected void LoadPage(int newPage)
+    {
+        // Set our current page
+        CurrentPage = newPage;
+
+        // Update the state of the layout so that the current button will be selected
+        InvokeAsync(StateHasChanged);
+
+        // Alert that the page was changed (child content bound will update the graphs)
+        PageChanged?.Invoke(CurrentPage);
+    }
+
     protected void OnTimerTick(object? state)
     {
-        CurrentPage = (CurrentPage + 1) % NumPages;
-        
-        InvokeAsync(StateHasChanged);
-        PageChanged?.Invoke(CurrentPage);
+        LoadPage((CurrentPage + 1) % NumPages);
     }
 
 
@@ -82,4 +87,9 @@
     public delegate void PageChangedDelegate(int newPage);
 
 
+
+    public void OnStop()
+    {
+        PageTimer?.Dispose();
+    }
 }

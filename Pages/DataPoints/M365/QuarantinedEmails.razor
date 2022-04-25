@@ -1,5 +1,23 @@
 <DataPointWrapper Title="Quarantined Emails">
-    <p>
-        Graph goes here
-    </p>
+	<Table TableData=@Data/>
 </DataPointWrapper>
+
+
+@code {
+	Data.Table.Table Data = new Data.Table.Table()
+	{
+		ColumnInfo =
+		{
+			new Data.Table.ColumnInfo() { Name = "Timestamp" },
+			new Data.Table.ColumnInfo() { Name = "Sender" },
+			new Data.Table.ColumnInfo() { Name = "Subject" }
+		},
+		Data =
+		{
+			new string[] {"4/22/2022 8:25:37 AM", "Zach_Alexander", "FW: Incorrect Form Select…"},
+			new string[] {"4/21/2022 12:36:36 PM", "Zach_Alexander", "[SPOOF] Invoice from eRev…"},
+			new string[] {"4/21/2022 12:36:36 PM", "Zach_Alexander", "[SPOOF] Invoice from eRev…"},
+			new string[] {"4/21/2022 12:36:07 PM", "noreply@groupom.com", "Ready for a Starbucks cof…"}
+		}
+	};
+}

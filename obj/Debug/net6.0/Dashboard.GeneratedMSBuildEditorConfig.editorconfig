@@ -91,6 +91,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGF0YVBvaW50c1xNMzY1XFVubGljZW5zZWRVc2Vycy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[F:/C\#/Dashboard/Shared/Chart.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENoYXJ0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [F:/C\#/Dashboard/Shared/DataPointWrapper.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXERhdGFQb2ludFdyYXBwZXIucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
@@ -110,6 +114,10 @@ build_metadata.AdditionalFiles.CssScope = b-fkzns3sacs
 [F:/C\#/Dashboard/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-oicp5eis7n
+
+[F:/C\#/Dashboard/Shared/Table.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFRhYmxlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-ntfvxa1zgp
 
 [F:/C\#/Dashboard/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s

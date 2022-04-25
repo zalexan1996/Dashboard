@@ -1,5 +1,20 @@
 <DataPointWrapper Title="M365 Audit Log">
-    <p>
-        Graph goes here
-    </p>
+    <Table TableData=@Data/>
 </DataPointWrapper>
+
+
+@code {
+    public Data.Table.Table Data = new Data.Table.Table()
+    {
+        ColumnInfo =
+        {
+            new Data.Table.ColumnInfo() { Name = "Generated At" },
+            new Data.Table.ColumnInfo() { Name = "User" },
+            new Data.Table.ColumnInfo() { Name = "Message" },
+        },
+        Data =
+        {
+            new string[] {"04/25/2022 1:43 PM", "Zach_Alexander", "Mailbox 'Zach_Alexander' Created"}
+        }
+    };
+}

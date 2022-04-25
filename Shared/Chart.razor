@@ -1,0 +1,50 @@
+@inject IJSRuntime JSRuntime
+
+<canvas id="@Id" width="@Width" height="@Height"></canvas>
+
+
+@code {
+
+    public enum ChartType {
+        Pie, Bar, Line
+    }
+
+
+    [Parameter]
+    public string? Id {get; set;}
+
+
+    [Parameter]
+    public ChartType Type {get; set;}
+
+
+    [Parameter]
+    public Data.ChartJS.DataSet[]? Data {get; set;}
+
+
+    [Parameter]
+    public string[]? Labels {get; set;}
+
+
+    [Parameter]
+    public int Width { get; set; } = 400;
+
+    [Parameter]
+    public int Height { get; set; } = 400;
+
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var config = new
+        {
+            Type = Type.ToString().ToLower(),
+            Data = new
+            {
+                Datasets = Data,
+                Labels = Labels
+            }
+        };
+
+        await JSRuntime.InvokeVoidAsync("setup", Id, config);
+    }
+}

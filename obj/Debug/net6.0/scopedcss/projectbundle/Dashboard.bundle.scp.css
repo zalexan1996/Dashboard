@@ -73,3 +73,11 @@ main[b-oicp5eis7n] {
         padding-right: 1.5rem !important;
     }
 }
+/* _content/Dashboard/Shared/Table.razor.rz.scp.css */
+
+.dashboard-table[b-ntfvxa1zgp] {
+    width: 100%;
+    background: #6c757d;
+    color: blue;
+
+}

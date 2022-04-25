@@ -10,7 +10,6 @@
     {
         case 0:
             <Dashboard.Pages.DataPages.ActiveDirectory/>
-            
         break;
 
         case 1:
@@ -36,31 +35,16 @@
     protected async void Update(string functionName)
     {
         await JSRuntime.InvokeVoidAsync(functionName);
-        // InvokeAsync(()=>);
-        StateHasChanged();
     }
 
 
     public void OnPageChange(int newPage)
     {
         CurrentPage = newPage;
-
-        if (newPage == 2)
-        {
-            InvokeAsync(()=>{
-                StateHasChanged();
-                Update("refreshKb4Graphs");
-                StateHasChanged();
-            });
-        }
-        else
-        {
-            InvokeAsync(()=>{
-                StateHasChanged();
-            });
-        }
         
-
+        InvokeAsync(()=>{
+            StateHasChanged();
+        });
     }
 }
 
