@@ -1,0 +1,46 @@
+<DataPointWrapper Title="Mailflow Statistics">
+    <ChartElement Id="MailflowStatistics" Type="@ChartElement.ChartType.Line"
+       Data=@DataSets
+       Labels="@Dates">
+    </ChartElement>
+</DataPointWrapper>
+
+
+@code{
+    public string[] Dates = {
+        "4/22", "4/23", "4/24", "4/25"
+    };
+
+    public Data.DataSet[] DataSets =
+    {
+        new Data.DataSet()
+        {
+            Data = new string[] { "351","165","223","198" },
+            Label = "GoodMail",
+            BackgroundColor = new string[] { "rgb(62,149,205)" },
+            BorderColor = new string[] { "rgb(62,149,205)" }
+        },
+        new Data.DataSet()
+        {
+            Data = new string[] { "70","90","44","60" },
+            Label = "EmailPhish",
+            BackgroundColor = new string[] { "rgb(60,186,159)" },
+            BorderColor = new string[] { "rgb(60,186,159)" }
+        },
+        new Data.DataSet()
+        {
+            Data = new string[] { "10","21","60","44" },
+            Label = "SpamDetections",
+            BackgroundColor = new string[] { "rgb(255,165,0)" },
+            BorderColor = new string[] { "rgb(255,165,0)" }
+        },
+        new Data.DataSet()
+        {
+            Data = new string[] { "6","3","2","2" },
+            Label = "TransportRules",
+            BackgroundColor = new string[] { "rgb(196,88,80)" },
+            BorderColor = new string[] { "rgb(196,88,80)" }
+        },
+    };
+
+}

@@ -1,0 +1,22 @@
+<DataPointWrapper Title="Object Statistics">
+    <ChartElement Id="TotalAdObjectStatistics" Type=@ChartElement.ChartType.Pie Data=@Data Labels=@Labels Width=200 Height=200/>
+</DataPointWrapper>
+
+
+
+@code {
+    public Data.DataSet[] Data { get; set; } =
+    {
+        new Data.DataSet()
+        {
+            Data = new string[] {"953", "240", "358"},
+            BorderColor = new string[] { "#3cba9f", "#ffa500", "#c45850" },
+            BackgroundColor = new string [] { "rgb(60,186,159,0.1)", "rgb(255,165,0,0.1)", "rgb(196,88,80,0.1)", }
+        },
+    };
+
+    public string[] Labels { get; set; } =
+    {
+        "Security Groups", "Users", "Computers"
+    };
+}

@@ -1,0 +1,25 @@
+@using DashboardAPI.Data;
+
+<DataPointWrapper Title="Locked Out Users">
+    <TableElement Table=@Data/>
+</DataPointWrapper>
+
+
+
+@code {
+    public Table Data = new Table()
+    {
+        ColumnInfo =
+        {
+            new ColumnInfo() { Name = "Username" },
+            new ColumnInfo() { Name = "Locked Out At" },
+            new ColumnInfo() { Name = "Remote System" }
+        },
+        Data =
+        {
+            new string[] {"Zach_A", "04/25/2022 1:40 PM", "IT-05"},
+            new string[] {"B_Bobbob", "04/25/2022 1:10 PM", "IT-04"},
+            new string[] {"Zach_A", "04/25/2022 1:43 PM", "IT-05"}
+        }
+    };
+}

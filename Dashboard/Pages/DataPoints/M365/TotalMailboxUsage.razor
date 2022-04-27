@@ -1,0 +1,24 @@
+@using DashboardAPI.Data;
+<DataPointWrapper Title="Total Mailbox Usage">
+	<TableElement Table=@Data/>
+</DataPointWrapper>
+
+
+@code {
+	Table Data = new Table()
+	{
+		ColumnInfo =
+		{
+			new ColumnInfo() { Name = "Event" },
+			new ColumnInfo() { Name = "Direction" },
+			new ColumnInfo() { Name = "Message Count" }
+		},
+		Data =
+		{
+			new string[] {"GoodMail", "Inbound", "3170"},
+			new string[] {"GoodMail", "Outbound", "5"},
+			new string[] {"EmailPhish", "Inbound", "20"},
+			new string[] {"GoodMail", "Outbound", "10"}
+		}
+	};
+}

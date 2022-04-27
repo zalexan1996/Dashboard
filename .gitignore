@@ -1,3 +1,12 @@
 .vs/
 .vscode/
 bin/
+
+Dashboard/.vs/
+Dashboard/bin/
+Dashboard/obj/
+
+DashboardAPI/bin/
+DashboardAPI/obj/
+DashboardAPI/Keys/
+

@@ -1,0 +1,23 @@
+@using DashboardAPI.Data;
+
+<DataPointWrapper Title="Unlicensed Users">
+	<TableElement Table=@Data/>
+</DataPointWrapper>
+
+
+@code {
+	Table Data = new Table()
+	{
+		ColumnInfo =
+		{
+			new ColumnInfo() { Name = "User" }
+		},
+		Data =
+		{
+			new string[] {"Zach Alexander"},
+			new string[] {"Zach 2"},
+			new string[] {"Zach 3"},
+			new string[] {"Zach 4"}
+		}
+	};
+}

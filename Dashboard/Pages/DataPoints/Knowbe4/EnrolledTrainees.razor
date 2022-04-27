@@ -1,0 +1,38 @@
+@using DashboardAPI.Data;
+<DataPointWrapper Title="Users in Training">
+    <TableElement Table="@TrainingTable"/>
+</DataPointWrapper>
+
+
+
+
+@code {
+    [Parameter]
+    public Table TrainingTable { get; set; } = new Table()
+    {
+        ColumnInfo =
+        {
+            new ColumnInfo()
+            {
+                Name = "User"
+            },
+            new ColumnInfo()
+            {
+                Name = "Progress"
+            },
+            new ColumnInfo()
+            {
+                Name = "Phish Prone"
+            },
+        },
+        Data =
+        {
+            new string[] {"Raphael Frey", "60%", "2.5%"},
+            new string[] {"Maximo Carney", "60%", "2.5%"},
+            new string[] {"Kraig Spence", "60%", "2.5%"},
+            new string[] {"Quintin Blankenship", "60%", "2.5%"},
+            new string[] {"Silvia Fleming", "60%", "2.5%"},
+            new string[] {"Elisha Richmond", "60%", "2.5%"}
+        }
+    };
+}

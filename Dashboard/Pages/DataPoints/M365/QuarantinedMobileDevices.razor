@@ -1,0 +1,22 @@
+@using DashboardAPI.Data;
+<DataPointWrapper Title="Quarantined Mobile Devices">
+	<TableElement Table=@Data/>
+</DataPointWrapper>
+
+
+@code {
+	Table Data = new Table()
+	{
+		ColumnInfo =
+		{
+			new ColumnInfo() { Name = "User" },
+			new ColumnInfo() { Name = "Device Quarantined" },
+			new ColumnInfo() { Name = "Timestamp" }
+		},
+		Data =
+		{
+			new string[] {"Zach Alexander", "Zach's Android", "04/25/2022 2:27PM"},
+			new string[] {"Zach Alexander", "HMPC35", "04/25/2022 2:21PM"}
+		}
+	};
+}
