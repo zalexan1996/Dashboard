@@ -1,6 +1,6 @@
 ﻿namespace DashboardAPI.Data
 {
-    public class EndpointBase
+    public abstract class EndpointBase
     {
         public static List<ColumnInfo> ColumnInfosFromType(Type t)
         {
@@ -13,20 +13,23 @@
                     .Where(a => (a as ColumnAttribute) != null)
                     .First() as ColumnAttribute;
 
-                output.Add(new ColumnInfo()
+                if (columnAttribute != null && columnAttribute.Visibility)
                 {
-                    Name = prop.Name,
-                    Type = columnAttribute != null ? columnAttribute.ColumnType : ColumnType.Text
-                });
+                    output.Add(new ColumnInfo()
+                    {
+                        Name = prop.Name,
+                        Type = columnAttribute != null ? columnAttribute.ColumnType : ColumnType.Text
+                    });
+                }
             }
 
             return output;
         }
 
+        public abstract string[] ToStringArray();
 
-        public virtual string[] ToStringArray()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract Task<EndpointBase[]?> Fetch();
+
+
     }
 }

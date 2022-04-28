@@ -33,7 +33,7 @@
 
 @code {
     // Stay on each page for 60 seconds.
-    public int PageDuration {get; set;} = 3;
+    public int PageDuration {get; set;} = 30;
 
     // The page that we're currently on.
     public int CurrentPage {get; set;} = 0;
@@ -90,6 +90,7 @@
 
     public void OnStop()
     {
-        PageTimer?.Dispose();
+        LoadPage((CurrentPage + 1) % NumPages);
+        // PageTimer?.Dispose();
     }
 }

@@ -1,0 +1,23 @@
+﻿@using DashboardAPI.Data;
+@using DashboardAPI.Data.Knowbe4;
+
+
+<DataPointWrapper Title="All Phishing Security Tests">
+    <TableElement Table=@Data/>
+</DataPointWrapper>
+
+
+@code {
+
+    // Sets the table data
+    public Table? Data { get; set; } = new Table();
+
+    protected async override Task OnInitializedAsync()
+    {
+        // Get active_campaigns as a table object with ActiveCampaign rows.
+        Data = await Table.GetTable<PhishingSecurityTest>("/knowbe4/phishing_security_tests");
+
+        // Update the UI to reflect the new table data
+        StateHasChanged();
+    }
+}

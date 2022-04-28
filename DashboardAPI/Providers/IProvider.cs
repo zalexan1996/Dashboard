@@ -2,15 +2,12 @@
 {
     public interface IProvider
     {
-        public bool Connect(string username, System.Security.SecureString password);
-        public bool Disconnect();
+        void Connect();
 
+        // Returns whether this provider has been authenticated.
+        bool IsConnected { get; }
 
-
-
-
-        public bool IsConnected { get; }
-        public string Username { set; }
-        public System.Security.SecureString Password { set; } 
+        // The mechanism for how this provider authenticates.
+        Authentication.IAuthenticationMethod AuthenticationMethod { get; }
     }
 }

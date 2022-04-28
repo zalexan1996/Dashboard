@@ -5,6 +5,18 @@ namespace DashboardAPI.Providers
 {
     public class Knowbe4Provider : IProvider
     {
+        public Knowbe4Provider()
+        {
+            Connect();
+        }
+        public void Connect()
+        {
+            _authenticationMethod.Token = File.ReadAllText("kb4.token");
+        }
+
+
+        public string URL { get; } = "https://us.api.knowbe4.com/v1";
+
         public bool IsConnected
         {
             get
@@ -13,42 +25,36 @@ namespace DashboardAPI.Providers
             }
         } private bool _isConnected = false;
 
-        public string Username
+
+        public Authentication.IAuthenticationMethod AuthenticationMethod
         {
-            set
+            get
             {
-                _username = value;
+                return _authenticationMethod;
             }
-        } private string? _username;
+        } private Authentication.TokenAuthentication _authenticationMethod = new Authentication.TokenAuthentication();
 
-        public SecureString Password
+
+
+
+
+        public async Task<Data.Knowbe4.PhishingSecurityTest[]?> GetPhishingSecurityTests()
         {
-            set
+            try
             {
-                _password = value;
+                HttpClient client = AuthenticationMethod.GetAuthenticatedClient($"{URL}/phishing/security_tests");
+
+                if (client != null)
+                {
+                    return await Helpers.HttpHelper.Get<Data.Knowbe4.PhishingSecurityTest>(client);
+                }
             }
-        } private SecureString? _password;
-
-
-
-        public bool Connect(string username, SecureString password)
-        {
-            using (HttpClient client = new HttpClient())
+            catch (Exception exception)
             {
-                client.DefaultRequestHeaders.Add("Accept", "application/json");
+                Console.WriteLine($"Exception occured: {exception.Message}");
             }
 
-            return false;
+            return null;
         }
-
-        public bool Disconnect()
-        {
-            if (IsConnected)
-            {
-                return true;
-            }
-            return false;
-        }
-
     }
 }
