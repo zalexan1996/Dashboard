@@ -2,8 +2,8 @@
 
 namespace DashboardAPI.Data.Knowbe4
 { 
-    // Fetch every 60 seconds
-    [Fetch(600)]
+    // Fetch once every 24 hours
+    [Fetch(24 * 60 * 60)]
     public class PhishingSecurityTest : EndpointBase
     {
         public async override Task<EndpointBase[]?> Fetch()
