@@ -8,7 +8,6 @@ namespace DashboardAPI.Data.Knowbe4
     {
         public async override Task<EndpointBase[]?> Fetch()
         {
-            Console.WriteLine("Phishing Security Test Fetch!");
             Providers.Knowbe4Provider kb4Provider = new Providers.Knowbe4Provider();
             return await kb4Provider.GetPhishingSecurityTests();
         }
@@ -21,19 +20,30 @@ namespace DashboardAPI.Data.Knowbe4
         public int pst_id { get; set; }
 
         [Column(ColumnType.Text, true)]
-        public string? name { get; set; }
+        public string name { get; set; } = "";
 
         [Column(ColumnType.Text, true)]
-        public string? status { get; set; }
+        public string status { get; set; } = "";
 
         [Column]
-        public object[]? groups { get; set; }
+        public object[]? groups { get; set; } = null;
 
         [Column(ColumnType.Percent, true)]
-        public double phish_prone_percentage { get; set; }
+        public double phish_prone_percentage
+        {
+            get
+            {
+                // Do a conversion for the table.
+                return _phish_prone_percentage * 10;
+            }
+            set
+            {
+                _phish_prone_percentage = value;
+            }
+        } private double _phish_prone_percentage;
 
-        [Column(ColumnType.Text, true)]
-        public string? started_at { get; set; }
+        [Column]
+        public string started_at { get; set; } = "";
 
         [Column]
         public int duration { get; set; }
@@ -77,6 +87,15 @@ namespace DashboardAPI.Data.Knowbe4
         [Column]
         public int bounced_count { get; set; }
 
+        [Column(ColumnType.ProgressBar, true)]
+        public double progress
+        {
+            get
+            {
+                return scheduled_count == 0 ? 0 : ((double)delivered_count / (double)scheduled_count) * 100;
+            }
+        }
+
 
 
 
@@ -88,7 +107,7 @@ namespace DashboardAPI.Data.Knowbe4
                 name,
                 status,
                 phish_prone_percentage.ToString(),
-                started_at
+                progress.ToString()
             };
         }
     }

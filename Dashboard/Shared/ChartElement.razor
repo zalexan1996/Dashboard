@@ -25,6 +25,13 @@
     [Parameter]
     public string[]? Labels {get; set;}
 
+    [Parameter]
+    public object Options { get; set; } = new
+    {
+        responsive = true
+    };
+    // public Data.Options? Options { get; set; } = null;
+
 
     [Parameter]
     public int Width { get; set; } = 400;
@@ -42,8 +49,11 @@
             {
                 Datasets = Data,
                 Labels = Labels
-            }
+            },
+            Options = Options
         };
+
+
 
         await JSRuntime.InvokeVoidAsync("setup", Id, config);
     }

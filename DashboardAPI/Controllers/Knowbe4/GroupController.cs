@@ -4,13 +4,13 @@ using DashboardAPI.Data.Knowbe4;
 namespace DashboardAPI.Controllers.Knowbe4
 {
     [ApiController()]
-    [Route("/knowbe4/phishing_security_tests")]
-    public class PhishingSecurityTestController : Controller
+    [Route("/knowbe4/groups")]
+    public class GroupController : Controller
     {
-        [HttpGet(Name = "GetPhishingSecurityTests")]
-        public PhishingSecurityTest[]? Get()
+        [HttpGet(Name = "GetGroups")]
+        public Group[]? Get()
         {
-            return Orchestrator.Instance.GetEndpointData<PhishingSecurityTest>();
+            return Orchestrator.Instance.GetEndpointData<Group>();
         }
 
         public static async Task<T[]?> Invoke<T>()
@@ -19,7 +19,7 @@ namespace DashboardAPI.Controllers.Knowbe4
             {
                 HttpClient client = new HttpClient()
                 {
-                    BaseAddress = new Uri($"{DashboardAPI.Data.API_Info.URL}/knowbe4/phishing_security_tests")
+                    BaseAddress = new Uri($"{DashboardAPI.Data.API_Info.URL}/knowbe4/groups")
                 };
 
                 var Result = client.GetAsync("").Result;

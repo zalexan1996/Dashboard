@@ -1,8 +1,9 @@
 ﻿@using DashboardAPI.Data;
 @using DashboardAPI.Data.Knowbe4;
+@using DashboardAPI.Controllers.Knowbe4;
 
 
-<DataPointWrapper Title="All Phishing Security Tests">
+<DataPointWrapper Title="Admin Accounts">
     <TableElement Table=@Data/>
 </DataPointWrapper>
 
@@ -14,8 +15,15 @@
 
     protected async override Task OnInitializedAsync()
     {
-        // Get active_campaigns as a table object with ActiveCampaign rows.
-        Data = await Table.GetTable<PhishingSecurityTest>("/knowbe4/phishing_security_tests");
+
+        Account[]? account = await AccountController.Invoke<Account>();
+
+        // Get all active phishing campaigns
+        if (account != null)
+        {
+            Data = Table.GetTable<Account.Admin>(account.First().admins);
+        }
+
 
         // Update the UI to reflect the new table data
         StateHasChanged();

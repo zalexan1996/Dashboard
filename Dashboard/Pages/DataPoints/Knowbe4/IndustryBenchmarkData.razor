@@ -1,0 +1,45 @@
+﻿@using DashboardAPI.Data;
+@using DashboardAPI.Data.Knowbe4;
+@using DashboardAPI.Controllers.Knowbe4;
+
+<DataPointWrapper Title="Industry Benchmark Data">
+    
+    <div class="col">
+		<div class="d-flex justify-content-between align-items-center">
+			<p class="mx-3">Account Average Phish-prone %</p>
+			<h3 class="mx-3">@Average%</h3>
+		</div>
+		<div class="d-flex justify-content-between align-items-center">
+			<p class="mx-3">Last Campaign Phish-prone %</p>
+			<h3 class="mx-3">@LastCampaign %</h3>
+		</div>
+		<div class="d-flex justify-content-between align-items-center">
+			<p class="mx-3">Industry Phish-prone %</p>
+			<h3 class="mx-3" style="color: #7685f7">18.3%</h3>
+		</div>
+		<Speedometer Percentage=@Average/>
+	</div>
+</DataPointWrapper>
+
+@code{
+	public double Average { get; set; } = 0.0;
+	public double LastCampaign { get; set; } = 0.0;
+
+
+	protected override async Task OnInitializedAsync()
+	{
+		PhishingSecurityTest[]? tests = await PhishingSecurityTestController.Invoke<PhishingSecurityTest>();
+		Account[]? accountInfo = await AccountController.Invoke<Account>();
+
+
+		if (tests != null && accountInfo != null)
+		{
+
+			Average = Math.Round(accountInfo.First().current_risk_score, 1);
+			LastCampaign = Math.Round(tests.OrderByDescending(t => t.started_at).First().phish_prone_percentage, 1);
+		}
+
+
+		StateHasChanged();
+	}
+}

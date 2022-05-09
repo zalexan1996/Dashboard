@@ -16,6 +16,7 @@ function DestroyOldChart(chartName)
 }
 
 
+
 /**
  * Setup
  * 
@@ -25,6 +26,7 @@ function DestroyOldChart(chartName)
  */
 window.setup = (id, config) => {
     DestroyOldChart(id);
+
     var ctx = document.getElementById(id).getContext('2d');
     new Chart(ctx, config);
 }

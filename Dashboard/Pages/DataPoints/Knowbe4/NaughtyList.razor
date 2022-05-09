@@ -1,0 +1,70 @@
+﻿@using DashboardAPI.Data;
+@using DashboardAPI.Data.Knowbe4;
+@using DashboardAPI.Controllers.Knowbe4;
+
+
+<DataPointWrapper Title="Naughty List">
+    <ChartElement Id="NaughtyList" Type="@ChartElement.ChartType.Bar"
+       Data=@DataSets.ToArray()
+       Labels="@Users.ToArray()">
+    </ChartElement>
+</DataPointWrapper>
+
+
+@code {
+    public List<Data.DataSet> DataSets = new List<Data.DataSet>();
+    public List<string> Users = new List<string>();
+
+
+    protected async override Task OnInitializedAsync()
+    {
+        // Get active_campaigns as a table object with ActiveCampaign rows.
+        User[]? users = await UserController.Invoke<User>();
+
+
+        if (users != null)
+        {
+            User[] newUsers = users.Where(u=>u.status == "active")
+                .OrderByDescending(u => u.phish_prone_percentage)
+                .Take(5)
+                .ToArray();
+
+
+            foreach (var user in newUsers)
+            {
+                Users.Add(user.DisplayName);
+            }
+
+            DataSets.Add(
+                new Data.DataSet()
+                {
+                    Data = newUsers.Select(e=>e.phish_prone_percentage.ToString()).ToArray(),
+                    Label = "Phish Prone Percentage",
+                    BackgroundColor = new string[] { "#fc9f8d" },
+                    BorderColor = new string[] { "#d32300" },
+                    Type= "bar",
+                    Stack = ""
+                }
+            );
+
+            DataSets.Add(
+                new Data.DataSet()
+                {
+                    Data = newUsers.Select(e => e.current_risk_score.ToString()).ToArray(),
+                    Label = "Current Risk Score",
+                    BackgroundColor = new string[] { "#c2bafc" },
+                    BorderColor = new string[] { "#1601af" },
+                    Type= "bar",
+                    Stack = ""
+                }
+            );
+        }
+
+        
+
+
+        
+        // Update the UI to reflect the new table data
+        StateHasChanged();
+    }
+}

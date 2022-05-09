@@ -1,0 +1,63 @@
+﻿@using DashboardAPI.Data;
+@using DashboardAPI.Data.Knowbe4;
+@using DashboardAPI.Controllers.Knowbe4;
+
+
+<DataPointWrapper Title="Risk Score History">
+    <div class="col">
+        <ChartElement Id="RiskScoreHistory" Type="@ChartElement.ChartType.Line" Width="1000"
+           Data=@DataSets.ToArray()
+           Labels="@Dates.ToArray()"
+           Options=@Options>
+        </ChartElement>
+    </div>
+</DataPointWrapper>
+
+@code {
+
+    public int ShowEveryOther { get; set; } = 5;
+
+    List<Data.DataSet> DataSets = new List<Data.DataSet>();
+    List<string> Dates = new List<string>();
+
+    object Options = new
+    {
+        scales = new
+        {
+            x = new
+            {
+                ticks = new
+                {
+                    font = new
+                    {
+                        size = 20
+                    }
+                }
+            }
+        }
+    };
+
+
+    protected async override Task OnInitializedAsync()
+    {
+
+        RiskScoreHistory[]? history = await RiskScoreHistoryController.Invoke<RiskScoreHistory>();
+
+        if (history != null)
+        {
+            var filteredHistory = history.Where((h, i) => i % 5 == 0);
+
+            Dates = filteredHistory.Select((h, i) => i % ShowEveryOther == 0 ? h.FormattedDate : "").ToList();
+            DataSets.Add(
+                new Data.DataSet()
+                {
+                    Data = filteredHistory.Select(h =>h.risk_score.ToString()).ToArray(),
+                    Label = "Risk Score",
+                    Tension = 0.25
+                }
+            );
+        }
+
+        StateHasChanged();
+    }
+}

@@ -1,0 +1,23 @@
+﻿body {
+}
+
+
+
+.radial-number {
+    text-anchor: middle;
+    font-size: 14px;
+    font-weight: bold;
+    fill: rgb(102, 102, 102);
+}
+
+.speedometer-percentage {
+    text-anchor: middle;
+    font-size: 30px;
+    font-weight: bold;
+    fill: rgb(102, 102, 102);
+}
+
+.speedometer-pointer {
+    fill: steelblue;
+
+}

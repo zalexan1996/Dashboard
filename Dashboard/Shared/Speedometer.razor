@@ -1,0 +1,54 @@
+﻿<svg width="338px" height="310px">
+	<g transform="translate(169, 186)">
+		<path fill="@speedometerColors[0]" d="@segmentPathData[0]"></path>
+		<path fill="@speedometerColors[1]" d="@segmentPathData[1]"></path>
+		<path fill="@speedometerColors[2]" d="@segmentPathData[2]"></path>
+		<path fill="@speedometerColors[3]" d="@segmentPathData[3]"></path>
+		<path fill="@speedometerColors[4]" d="@segmentPathData[4]"></path>
+	</g>
+	<g class="radial-number" transform="translate(169, 186)">
+		<text transform="rotate(-90) translate(0, -159)">0</text>
+		<text transform="rotate(-54) translate(0, -159)">20</text>
+		<text transform="rotate(-18) translate(0, -159)">40</text>
+		<text transform="rotate(18) translate(0, -159)" >60</text>
+		<text transform="rotate(54) translate(0, -159)" >80</text>
+		<text transform="rotate(90) translate(0, -159)" >100</text>
+	</g>
+	<g transform="translate(169, 203)">
+		<text class="speedometer-percentage" y="23">@Percentage</text>
+	</g>
+	<g class="speedometer-pointer" transform="translate(169, 186)">
+		<path d="@pointerPathData" transform="rotate(@Ratio)">
+		</path>
+	</g>
+</svg>
+
+
+@code{
+
+
+
+
+	[Parameter]
+	public double Percentage {get; set; }
+
+	public double Ratio 
+	{
+		get
+		{
+			return -90 + Percentage / 100 * 180;
+		}
+	}
+
+	protected string[] speedometerColors = new string[] { "#33CC33", "#F5FB54", "#ECC423", "#F6741E", "#DC483E" };
+	protected string pointerPathData = "M5,0C3.333333333333333,-76,1.6666666666666667,-152,0,-152C-1.6666666666666667,-152,-3.333333333333333,0,-5,0C-3.333333333333333,0,-1.6666666666666667,5,0,5C1.6666666666666667,5,3.333333333333333,2.5,5,0";
+	protected string[] segmentPathData = new string[]
+	{
+		"M-149,-1.8247237307295562e-14A149,149,0,0,1,-120.54353216186715,-87.58000259157852L-72.00251249937031,-52.31288745403012A89,89,0,0,0,-89,-1.0899356512411444e-14Z",
+		"M-120.54353216186715,-87.58000259157852A149,149,0,0,1,-46.043532161867155,-141.7074209279779L-27.50251249937031,-84.64402995026867A89,89,0,0,0,-72.00251249937031,-52.31288745403012Z",
+		"M-46.043532161867155,-141.7074209279779A149,149,0,0,1,46.043532161867205,-141.70742092797786L27.502512499370344,-84.64402995026866A89,89,0,0,0,-27.50251249937031,-84.64402995026867Z",
+		"M46.043532161867205,-141.70742092797786A149,149,0,0,1,120.54353216186718,-87.58000259157849L72.00251249937033,-52.31288745403011A89,89,0,0,0,27.502512499370344,-84.64402995026866Z",
+		"M120.54353216186718,-87.58000259157849A149,149,0,0,1,149,0L89,0A89,89,0,0,0,72.00251249937033,-52.31288745403011Z"
+	};
+
+}

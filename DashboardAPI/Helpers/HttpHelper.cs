@@ -2,6 +2,7 @@
 
 namespace DashboardAPI.Helpers
 {
+    /*
     public class HttpHelper
     {
 
@@ -22,14 +23,14 @@ namespace DashboardAPI.Helpers
 
 
 
-        public static async Task<T[]?> Get<T>(string endpoint)
+        public static async Task<T[]?> Get<T>(string endpoint, string paramString = "")
         {
             using (HttpClient client = new HttpClient())
             {
                 // Create the HTTP client
-                client.BaseAddress = new Uri($"{API_Info.URL}{endpoint}");
+                client.BaseAddress = new Uri($"{API_Info.URL}{endpoint}{paramString}");
                 client.DefaultRequestHeaders.Add("accept", "application/json");
-
+                
                 return await Get<T>(client);
             }
         }
@@ -38,6 +39,7 @@ namespace DashboardAPI.Helpers
         {
             // Send the HTTP GET
             HttpResponseMessage? response = Get(client);
+            
 
             // Return the converted output if there is any.
             return response == null ? null : await response.Content.ReadFromJsonAsync<T[]?>();
@@ -45,4 +47,5 @@ namespace DashboardAPI.Helpers
 
 
     }
+    */
 }

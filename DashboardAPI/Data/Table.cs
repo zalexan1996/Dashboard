@@ -1,4 +1,6 @@
-﻿namespace DashboardAPI.Data
+﻿using System.Linq;
+
+namespace DashboardAPI.Data
 {
     public class Table
     {
@@ -9,18 +11,18 @@
         public List<string[]> Data = new List<string[]>();
 
 
+
         public void AddColumn(ColumnInfo info) { ColumnInfo.Add(info); }
         public void AddRow(string[] row) { Data.Add(row); }
 
 
-
-        public static async Task<Table?> GetTable<T>(string endpoint)
+        protected bool GetAll<T>(T type)
         {
-            // Fetch the data from the endpoint as an array of our supplied types. 
-            var objects = await Helpers.HttpHelper.Get<T>(endpoint);
+            return true;
+        }
 
-            // Exit prematurely if there was no data retrieved from the endpoint
-            if (objects == null) return null;
+        public static Table GetTable<T>(T[] data)
+        {
 
             // Get the column information for our table.
             Table output = new Table()
@@ -28,8 +30,9 @@
                 ColumnInfo = EndpointBase.ColumnInfosFromType(typeof(T))
             };
 
+
             // Add a table row for each object
-            foreach (T? obj in objects ?? Enumerable.Empty<T>())
+            foreach (T? obj in data ?? Enumerable.Empty<T>())
             {
                 EndpointBase? endpointObj = obj as EndpointBase;
                 if (endpointObj != null)
@@ -40,5 +43,6 @@
 
             return output;
         }
+
     }
 }

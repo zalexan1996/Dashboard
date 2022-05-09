@@ -1,13 +1,39 @@
 @using DashboardAPI.Data;
 @using DashboardAPI.Data.Knowbe4;
+@using DashboardAPI.Controllers.Knowbe4;
 
 
 <DataPointWrapper Title="Active Campaigns">
-    <TableElement Table=@Data/>
+    <ChartElement Id="ActiveCampaigns" Type="@ChartElement.ChartType.Bar" Width="600"
+        Data=@DataSets.ToArray()
+        Labels=@CampaignNames.ToArray()
+
+        Options=@Options/>
 </DataPointWrapper>
 
 
 @code {
+
+    public int SelectTop { get; set; } = 5;
+
+    object Options = new
+    {
+        responsive = true,
+        scales = new
+        {
+            x = new
+            {
+                stacked = true
+            },
+            y = new
+            {
+                stacked = true
+            }
+        }
+    };
+
+    public List<Data.DataSet> DataSets { get; set; } = new List<Data.DataSet>();
+    public List<string> CampaignNames { get; set; } = new List<string>();
 
     // Sets the table data
     public Table? Data { get; set; } = new Table();
@@ -15,7 +41,50 @@
     protected async override Task OnInitializedAsync()
     {
         // Get active_campaigns as a table object with ActiveCampaign rows.
-        Data = await Table.GetTable<ActiveCampaign>("/knowbe4/active_campaigns");
+        PhishingSecurityTest[]? tests = await PhishingSecurityTestController.Invoke<PhishingSecurityTest>();
+        
+
+
+        List<PhishingSecurityTest?> testList = tests.OrderByDescending(t => t.started_at).Take(SelectTop).ToList();
+
+
+        CampaignNames = testList.Select(t => t.name).ToList();
+
+        DataSets.Add(new Data.DataSet()
+        {
+            Label = "Clicks",
+            Data = testList.Select(t=>t.clicked_count.ToString()).ToArray(),
+            BackgroundColor = new string[] { "rgb(255, 128, 128)" },
+            Type="bar"
+        });
+        
+        DataSets.Add(new Data.DataSet()
+        {
+            Label = "Reports",
+            Data = testList.Select(t=>t.reported_count.ToString()).ToArray(),
+            BackgroundColor = new string[] { "rgb(128, 255, 128)" },
+            Type="bar"
+        });
+        DataSets.Add(new Data.DataSet()
+        {
+            Label = "Replies",
+            Data = testList.Select(t=>t.replied_count.ToString()).ToArray(),
+            BackgroundColor = new string[] { "rgb(128, 128, 255)" },
+            Type="bar"
+        });
+
+        
+        DataSets.Add(new Data.DataSet()
+        {
+            Label = "Phish Prone",
+            Data = testList.Select(t=>t.phish_prone_percentage.ToString()).ToArray(),
+            BackgroundColor = new string[] { "rgb(100, 100, 100)" },
+            BorderWidth = 3,
+            BorderColor = new string[] { "rgb(100, 100, 100)" },
+            Fill = false,
+            Type="line",
+            Tension = 0.5
+        });
 
         // Update the UI to reflect the new table data
         StateHasChanged();

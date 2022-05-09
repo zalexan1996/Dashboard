@@ -1,0 +1,35 @@
+﻿@using DashboardAPI.Data;
+@using DashboardAPI.Data.Knowbe4;
+@using DashboardAPI.Controllers.Knowbe4;
+
+
+<DataPointWrapper Title="All Groups">
+    <TableElement Table=@Data/>
+</DataPointWrapper>
+
+
+@code {
+
+    // Sets the table data
+    public Table? Data { get; set; } = new Table();
+
+    protected async override Task OnInitializedAsync()
+    {
+
+        Group[]? groups = await GroupController.Invoke<Group>();
+
+        // Get all active phishing campaigns
+        if (groups != null)
+        {
+            Data = Table.GetTable<Group>(groups
+                .Where(g=>g.status == "active")
+                .OrderByDescending(g=>g.current_risk_score)
+                .Take(10)
+                .ToArray());
+        }
+
+
+        // Update the UI to reflect the new table data
+        StateHasChanged();
+    }
+}
