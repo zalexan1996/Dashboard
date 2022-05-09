@@ -1,7 +1,7 @@
 # Dashboard
 A Dashboard webapp using C#, Blazor, and chart.js.
 
-<img src="https://github.com/zalexan1996/Dashboard/blob/main/2022-04-28%2012_06_26-.png?raw=true"></img>
+<img src="https://github.com/zalexan1996/Dashboard/blob/main/Dashboard/Screenshots/KB4%20Page%20-%202022-05-09.png?raw=true"></img>
 
 This application will have support for creating graphs for the following services:
 - Knowbe4
