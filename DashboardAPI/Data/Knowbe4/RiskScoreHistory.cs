@@ -4,10 +4,10 @@
     public class RiskScoreHistory : EndpointBase
     {
 
-        [Column(ColumnType.Text, true)]
+        [Column()]
         public double risk_score { get; set; }
 
-        [Column(ColumnType.Text, true)]
+        [Column()]
         public string date { get; set; } = "";
 
 
@@ -29,14 +29,6 @@
         }
 
 
-
-        public override string[] ToStringArray()
-        {
-            return new string[] {
-                DateTime.Parse(date).ToString("Y"),
-                risk_score.ToString()
-            };
-        }
 
 
 

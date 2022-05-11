@@ -10,17 +10,7 @@
             return await kb4Provider.GetUsers();
         }
 
-        public override string[] ToStringArray()
-        {
-            return new string[]
-            {
-                DisplayName,
-                phish_prone_percentage.ToString(),
-                current_risk_score.ToString()
-            };
-        }
-
-        [Column(ColumnType.Text, true)]
+        [Column()]
         public string DisplayName
         {
             get
@@ -42,7 +32,7 @@
         [Column]
         public string email { get; set; } = "";
 
-        [Column(ColumnType.Percent, true)]
+        [Column(ColumnType.Percent)]
         public double phish_prone_percentage { get; set; }
         [Column]
         public string phone_number { get; set; } = "";
@@ -65,7 +55,7 @@
         [Column]
         public object[]? groups { get; set; }
 
-        [Column(ColumnType.Text, true)]
+        [Column()]
         public double current_risk_score { get; set; }
         [Column]
         public string[] aliases { get; set; } = { };

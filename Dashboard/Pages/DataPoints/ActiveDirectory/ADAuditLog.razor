@@ -1,22 +1,10 @@
 @using DashboardAPI.Data;
 
-<DataPointWrapper Title="Active Directory Audit Log">
-    <TableElement Table=@Data/>
+<DataPointWrapper Title="AD Audit Log">
+    <h3>To be added...</h3>
 </DataPointWrapper>
 
 
 @code {
-    public Table Data = new Table()
-    {
-        ColumnInfo =
-        {
-            new ColumnInfo() { Name = "Generated At" },
-            new ColumnInfo() { Name = "User" },
-            new ColumnInfo() { Name = "Message" },
-        },
-        Data =
-        {
-            new string[] {"04/25/2022 1:43 PM", "Zach_Alexander", "Mailbox 'Zach_Alexander' Created"}
-        }
-    };
+
 }

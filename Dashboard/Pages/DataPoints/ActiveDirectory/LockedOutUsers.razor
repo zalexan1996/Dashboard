@@ -1,25 +1,46 @@
 @using DashboardAPI.Data;
+@using DashboardAPI.Data.ActiveDirectory;
+
+@using DashboardAPI.Controllers.ActiveDirectory;
+@using DashboardAPI.Providers;
 
 <DataPointWrapper Title="Locked Out Users">
-    <TableElement Table=@Data/>
+    @if(Data?.Data.Count > 0)
+    {
+        <TableElement Table=@Data Autorun=@true/>
+    }
+    else
+    {
+        <p>Sorry, no data to present.</p>
+    }
 </DataPointWrapper>
 
 
-
 @code {
-    public Table Data = new Table()
+
+    public string InOu { get; set; } = "Fulfillment";
+
+    public Table? Data { get; set; } = new Table();
+
+    protected override async Task OnInitializedAsync()
     {
-        ColumnInfo =
+        // Fetch our user database from the local API
+        var users = await UserController.Invoke<ADUser>();
+
+        if (users != null)
         {
-            new ColumnInfo() { Name = "Username" },
-            new ColumnInfo() { Name = "Locked Out At" },
-            new ColumnInfo() { Name = "Remote System" }
-        },
-        Data =
-        {
-            new string[] {"Zach_A", "04/25/2022 1:40 PM", "IT-05"},
-            new string[] {"B_Bobbob", "04/25/2022 1:10 PM", "IT-04"},
-            new string[] {"Zach_A", "04/25/2022 1:43 PM", "IT-05"}
+            // Show the locked out users in the domain user folder.
+            Data = Table.GetTable<ADUser>(
+
+                // Filter the users down to only those locked out and only those in the target OU.
+                users.Where(u=>u.IsLockedOut && u.IsInOU(ActiveDirectoryProvider.LockedOutUserSearchBase)).ToArray(),
+
+                // Only show these two columns
+                new string[] {"Name", "LockedOutSince"}
+            );
+
+            // Re-render this component.
+            StateHasChanged();
         }
-    };
+    }
 }

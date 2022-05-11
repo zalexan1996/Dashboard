@@ -1,12 +1,17 @@
 @implements Dashboard.Data.DataPage
+@using DashboardAPI.Providers
 
 <GraphPane>
+    <Dashboard.Pages.DataPoints.ActiveDirectory.UsersInGroup Title="Domain Admins" MemberOf="CN=Domain Admins,CN=Users"/>
+    <Dashboard.Pages.DataPoints.ActiveDirectory.UsersInGroup Title="Users with VPN access" MemberOf="@ActiveDirectoryProvider.RASUserGroupName"/>
+    <Dashboard.Pages.DataPoints.ActiveDirectory.LockedOutUsers/>
     <Dashboard.Pages.DataPoints.ActiveDirectory.ActiveVPNUsers/>
     <Dashboard.Pages.DataPoints.ActiveDirectory.ADAuditLog/>
-    <Dashboard.Pages.DataPoints.ActiveDirectory.LockedOutUsers/>
 </GraphPane>
 
 @code {
+
+
     public void Get()
     {
         

@@ -30,3 +30,8 @@ window.setup = (id, config) => {
     var ctx = document.getElementById(id).getContext('2d');
     new Chart(ctx, config);
 }
+
+
+window.FocusElement = function (id) {
+    document.getElementById(id).focus();
+}

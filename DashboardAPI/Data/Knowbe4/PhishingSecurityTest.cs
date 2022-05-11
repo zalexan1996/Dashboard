@@ -19,16 +19,16 @@ namespace DashboardAPI.Data.Knowbe4
         [Column]
         public int pst_id { get; set; }
 
-        [Column(ColumnType.Text, true)]
+        [Column()]
         public string name { get; set; } = "";
 
-        [Column(ColumnType.Text, true)]
+        [Column()]
         public string status { get; set; } = "";
 
         [Column]
         public object[]? groups { get; set; } = null;
 
-        [Column(ColumnType.Percent, true)]
+        [Column(ColumnType.Percent)]
         public double phish_prone_percentage
         {
             get
@@ -87,7 +87,7 @@ namespace DashboardAPI.Data.Knowbe4
         [Column]
         public int bounced_count { get; set; }
 
-        [Column(ColumnType.ProgressBar, true)]
+        [Column(ColumnType.ProgressBar)]
         public double progress
         {
             get
@@ -100,15 +100,5 @@ namespace DashboardAPI.Data.Knowbe4
 
 
 
-        public override string[] ToStringArray()
-        {
-            return new string[]
-            {
-                name,
-                status,
-                phish_prone_percentage.ToString(),
-                progress.ToString()
-            };
-        }
     }
 }

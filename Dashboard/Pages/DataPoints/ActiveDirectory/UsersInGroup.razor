@@ -1,0 +1,36 @@
+﻿@using DashboardAPI.Data;
+@using DashboardAPI.Data.ActiveDirectory;
+
+@using DashboardAPI.Controllers.ActiveDirectory;
+
+<DataPointWrapper Title="@Title">
+    <TableElement Table=@Data Autorun=@true/>
+</DataPointWrapper>
+
+
+@code {
+
+    [Parameter]
+    public string Title { get; set; } = "";
+    [Parameter]
+    public string MemberOf { get; set; } = "";
+
+
+    public Table? Data { get; set; } = new Table();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var users = await UserController.Invoke<ADUser>();
+
+        if (users != null)
+        {
+            Data = Table.GetTable<ADUser>(users
+                .Where(u=>u.IsMemberOf(MemberOf, true))
+                .OrderBy(u=>u.Name)
+                .ToArray(),
+            new string[] {"Name", "IsLockedOut"});
+            StateHasChanged();
+        }
+
+    }
+}

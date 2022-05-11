@@ -12,7 +12,7 @@
 
             public User? UserData { get; set; }
 
-            [Column(ColumnType.Text, true)]
+            [Column()]
             public string DisplayName
 			{
                 get
@@ -21,7 +21,7 @@
 				}
 			}
 
-            [Column(ColumnType.Text, true)]
+            [Column()]
             public string? JoinedOn
 			{
                 get
@@ -30,11 +30,6 @@
                 }
 			}
 
-            public Admin()
-            {
-                // User[]? Users = DashboardAPI.Controllers.Orchestrator.Instance.GetEndpointData<User>();
-                // UserData = Users?.Where(e => e.id == Id).First();
-            }
 		}
 
         public async override Task<EndpointBase[]?> Fetch()
@@ -45,39 +40,29 @@
             return new Account[] { accountInfo };
         }
 
-        public override string[] ToStringArray()
-        {
-            return new string[]
-            {
-                name,
-                number_of_seats.ToString(),
-                current_risk_score.ToString()
-            };
-        }
 
-
-        [Column(ColumnType.Text, true)]
+        [Column()]
         public string name { get; set; } = "";
 
-        [Column(ColumnType.Text, false)]
+        [Column()]
         public string type { get; set; } = "";
 
-        [Column(ColumnType.Text, false)]
+        [Column()]
         public string[] domains { get; set; } = new string[] { };
 
-        [Column(ColumnType.Text, false)]
+        [Column()]
         public Admin[] admins { get; set; } = new Admin[] { };
 
-        [Column(ColumnType.Text, false)]
+        [Column()]
         public string subscription_level { get; set; } = "";
 
-        [Column(ColumnType.Text, false)]
+        [Column()]
         public string subscription_end_date { get; set; } = "";
 
-        [Column(ColumnType.Text, true)]
+        [Column()]
         public int number_of_seats { get; set; }
 
-        [Column(ColumnType.Percent, true)]
+        [Column(ColumnType.Percent)]
         public double current_risk_score { get; set; }
 
 

@@ -43,6 +43,7 @@ namespace DashboardAPI.Providers
 
         protected async Task<T?> Get<T>(string endpoint, string paramString = "")
         {
+            
             try
             {
                 HttpClient client = AuthenticationMethod.GetAuthenticatedClient($"{endpoint}{paramString}");

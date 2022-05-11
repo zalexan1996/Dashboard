@@ -1,45 +1,102 @@
 ﻿
-<table class="table-bordered table-responsive-lg">
-	<thead>
-		<tr>
-			@foreach(var row in Table.ColumnInfo)
-			{
-				<td class="px-3 py-2" style="background-color: rgb(70, 72, 84); color: white"><b>@row.Name</b></td>
-			}
-		</tr>
-	</thead>
-	<tbody class="">
-	@foreach(var row in Table.Data)
-	{
-		<tr>
-			@for (int i = 0; i < row.Length; i++)
-			{
-				@switch(Table.ColumnInfo[i].Type)
+<div class="table-responsive">
+	<table class="table table-bordered table-striped" style="width:100%" id="theTable">
+		<thead>
+			<tr>
+				@foreach(var row in Table.ColumnInfo)
 				{
-					case DashboardAPI.Data.ColumnType.Text:
-						<td class="px-3 py-2">@row[i]</td>
-						break;
-					case DashboardAPI.Data.ColumnType.ProgressBar:
-						<td class="p-2">
-							<div class="progress">
-							  <div style="width: @row[i]%" class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar"></div>
-							</div>
-						</td>
-						break;
-					case DashboardAPI.Data.ColumnType.Percent:
-						<td class="px-3 py-2"><b>@Math.Round(Double.Parse(row[i]), 2)%</b></td>
-						break;
+					<td style="background-color: rgb(70, 72, 84); color: white"><b>@row.Name</b></td>
 				}
-			}
-		</tr>
+			</tr>
+		</thead>
+		<tbody class="">
+		@for(int r = CurrentPage * PerPage; r < CurrentPage * PerPage + PerPage && r < TotalRows; r++)
+		{
+			<tr>
+				@for (int i = 0; i < Table.Data[r].Length; i++)
+				{
+					@switch(Table.ColumnInfo[i].Type)
+					{
+						case DashboardAPI.Data.ColumnType.Text:
+							<td>@Table.Data[r][i]</td>
+							break;
+						case DashboardAPI.Data.ColumnType.ProgressBar:
+							<td>
+								<div class="progress">
+								  <div style="width: @Table.Data[r][i]%" class="progress-bar progress-bar-animated progress-bar-striped" role="progressbar"></div>
+								</div>
+							</td>
+							break;
+						case DashboardAPI.Data.ColumnType.Percent:
+							<td><b>@Math.Round(Double.Parse(Table.Data[r][i]), 2)%</b></td>
+							break;
+					}
+				}
+			</tr>
+		}
+		</tbody>
+	</table>
+
+	@if(Table.Data.Count > PerPage)
+	{
+	<!-- First, Previous, 1->max, Next, Last -->
+	<div class="btn-group">
+		<button @onclick="()=>ChangePage(0)" class="btn table-page-item @(CurrentPage == 0 ? "disabled" : "enabled")">First</button>
+		<button @onclick="()=>ChangePage(CurrentPage-1)" class="btn table-page-item @(CurrentPage == 0 ? "disabled" : "enabled")">Previous</button>
+
+		@for(int i = 0; i < TotalPages; i++)
+		{
+				int local = i;
+				<button @onclick="()=>ChangePage(local)" class="btn table-page-item @(i == CurrentPage ? "disabled" : "enabled")">@(i+1)</button>
+		}
+
+		<button @onclick="()=>ChangePage(CurrentPage+1)" class="btn table-page-item @(CurrentPage == TotalPages - 1 ? "disabled" : "enabled")">Next</button>
+		<button @onclick="()=>ChangePage(TotalPages-1)" class="btn table-page-item @(CurrentPage == TotalPages - 1 ? "disabled" : "enabled")">Last</button>
+	</div>
 	}
-	</tbody>
-</table>
+</div>
+
+
+
 
 
 
 @code {
 
+	protected void ChangePage(int index) 
+	{ 
+		CurrentPage = Math.Clamp(index, 0, TotalPages - 1); 
+	}
+
+	protected override void OnInitialized()
+	{
+		if (Autorun && TotalPages > 1)
+		{
+			TableTimer = new Timer(TableTimerTick, null, SecondsPerPage * 1000, SecondsPerPage * 1000);
+		}
+	}
+
+	protected void TableTimerTick(object? state)
+	{
+		ChangePage((CurrentPage + 1) % TotalPages);
+		InvokeAsync(StateHasChanged);
+	}
+
+	protected int TotalPages { get { return (int)Math.Ceiling(TotalRows / (double)PerPage); } }
+	protected int TotalRows { get { return Table.Data.Count; } }
+	protected int CurrentPage { get; set; } = 0;
+	protected System.Threading.Timer? TableTimer {get; set;}
+
+
+	[Parameter]
+	public bool Autorun { get; set; } = true;
+
+	[Parameter]
+	public int SecondsPerPage { get; set; } = 10;
+
+	[Parameter]
+	public int PerPage { get; set; } = 10; //PerPage values might be 5, 10, 25, 50
+	
 	[Parameter]
 	public DashboardAPI.Data.Table Table { get; set; } = new DashboardAPI.Data.Table();
 }

@@ -2,20 +2,13 @@
 {
     public class TrainingEnrollment : EndpointBase
     {
-        public override string[] ToStringArray()
-        {
-            return new string[]
-            {
-
-            };
-        }
 
         public override Task<EndpointBase[]?> Fetch()
         {
             throw new NotImplementedException();
         }
 
-        [Column(ColumnType.Text, true)]
+        [Column()]
         public string Name
         { 
             get
@@ -24,7 +17,7 @@
             }
         }
 
-        [Column(ColumnType.Text, true)]
+        [Column()]
         public string Campaign
         {
             get
@@ -32,7 +25,7 @@
                 return campaign_name;
             }
         }
-        [Column(ColumnType.Text, true)]
+        [Column()]
         public string Status
         {
             get

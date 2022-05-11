@@ -21,13 +21,13 @@ namespace DashboardAPI.Data
             return true;
         }
 
-        public static Table GetTable<T>(T[] data)
+        public static Table GetTable<T>(T[]? data, string[] includeColumns)
         {
 
             // Get the column information for our table.
             Table output = new Table()
             {
-                ColumnInfo = EndpointBase.ColumnInfosFromType(typeof(T))
+                ColumnInfo = EndpointBase.GetColumnInfos(typeof(T), includeColumns)
             };
 
 
@@ -37,7 +37,7 @@ namespace DashboardAPI.Data
                 EndpointBase? endpointObj = obj as EndpointBase;
                 if (endpointObj != null)
                 {
-                    output.AddRow(endpointObj.ToStringArray());
+                    output.AddRow(endpointObj.ToStringArray(includeColumns));
                 }
             }
 

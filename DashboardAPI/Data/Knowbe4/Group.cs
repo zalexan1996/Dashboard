@@ -10,37 +10,27 @@
             return await kb4Provider.GetGroups();
         }
 
-        public override string[] ToStringArray()
-        {
-            return new string[]
-            {
-                name,
-                member_count.ToString(),
-                current_risk_score.ToString(),
-                status
-            };
-        }
 
 
-        [Column(ColumnType.Text, false)]
+        [Column()]
         public int id { get; set; }
 
-        [Column(ColumnType.Text, true)]
+        [Column()]
         public string name { get; set; } = "";
 
-        [Column(ColumnType.Text, false)]
+        [Column()]
         public string group_type { get; set; } = "";
 
-        [Column(ColumnType.Text, false)]
+        [Column()]
         public string provisioning_guid { get; set; } = "";
 
-        [Column(ColumnType.Text, true)]
+        [Column()]
         public int member_count { get; set; }
 
-        [Column(ColumnType.Text, true)]
+        [Column()]
         public double current_risk_score { get; set; }
 
-        [Column(ColumnType.Text, true)]
+        [Column()]
         public string status { get; set; } = "";
     }
 }

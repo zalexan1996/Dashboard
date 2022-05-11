@@ -24,8 +24,8 @@
             Data = Table.GetTable<Group>(groups
                 .Where(g=>g.status == "active")
                 .OrderByDescending(g=>g.current_risk_score)
-                .Take(10)
-                .ToArray());
+                .ToArray(),
+            new string[] {"name", "member_count", "current_risk_score", "status"});
         }
 
 

@@ -16,15 +16,13 @@
     // Data for defining how a specific column should be interpreted
     public class ColumnAttribute : Attribute
     {
-        public ColumnAttribute(ColumnType columnType = ColumnType.Text, bool visibility = false)
+        public ColumnAttribute(ColumnType columnType = ColumnType.Text)
         {
             ColumnType = columnType;
-            Visibility = visibility;
         }
 
 
         public ColumnType ColumnType { get; set; }
-        public bool Visibility { get; set; }
     }
 
     public class API_Info

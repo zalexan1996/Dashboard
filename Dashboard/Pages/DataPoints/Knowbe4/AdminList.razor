@@ -21,7 +21,10 @@
         // Get all active phishing campaigns
         if (account != null)
         {
-            Data = Table.GetTable<Account.Admin>(account.First().admins);
+            Data = Table.GetTable<Account.Admin>(
+                account.First().admins,
+                new string[] {"DisplayName", "JoinedOn"}
+            );
         }
 
 
