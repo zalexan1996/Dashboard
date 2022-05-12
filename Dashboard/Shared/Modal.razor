@@ -1,0 +1,88 @@
+﻿@inject IJSRuntime JSRuntime
+
+<dialog @onclick="OnClick" @ref="_element" class="px-5">
+	<div class="z-flex-modal">
+		<nav class="navbar navbar-expand-sm container-fluid navbar-collapse">
+			<h2 class="navbar-nav me-auto">@Title</h2>
+			<button class="mavbar-nav" @onclick="Close"><span class="oi oi-x"></span></button>
+		</nav>
+		<div class="z-flex-content">
+			@ChildContent
+		</div>
+	</div>
+</dialog>
+
+@code {
+	private DotNetObjectReference<Modal>? _this = null;
+	private ElementReference _element;
+
+	public bool IsOpen
+	{
+		get
+		{
+			return _isOpen;
+		}
+		protected set
+		{
+			if (IsOpen != value)
+			{
+				_isOpen = value;
+				OpenChanged.InvokeAsync(IsOpen);
+			}
+		}
+	} private bool _isOpen = false;
+
+	[Parameter]
+	public string Title { get; set; } = "";
+
+	[Parameter]
+	public RenderFragment? ChildContent { get; set; } = null;
+
+	[Parameter]
+	public EventCallback<bool> OpenChanged { get; set; }
+
+
+	[JSInvokable]
+	public void Open() { IsOpen = true; }
+
+	[JSInvokable]
+	public void Close() { IsOpen = false; }
+
+
+	protected override async Task OnAfterRenderAsync(bool firstRender)
+	{
+		// Adds a JS event handler for the dialog's close event that will call our C# Close method
+		if (firstRender)
+		{
+			_this = DotNetObjectReference.Create(this);
+			await JSRuntime.InvokeVoidAsync("initializeModal", _element, _this);
+		}
+
+
+		// Open the modal
+		if (IsOpen)
+		{
+			await JSRuntime.InvokeVoidAsync("openModal", _element);
+		}
+
+		// Close the modal
+		else
+		{
+			await JSRuntime.InvokeVoidAsync("closeModal", _element);
+		}
+
+		await base.OnAfterRenderAsync(firstRender);
+	}
+
+
+	// Close the modal if we click outiside the bounds
+	protected async void OnClick(MouseEventArgs e)
+	{
+		var bounds = await JSRuntime.InvokeAsync<Data.JS.BoundingClientRect>("getElementBounds", _element);
+
+		if (!bounds.IsPointWithinBounds(e.PageX, e.PageY))
+		{
+			Close();
+		}
+	}
+}

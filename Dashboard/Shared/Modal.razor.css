@@ -1,0 +1,19 @@
+﻿.z-flex-modal {
+    width: 800px;
+    height: 800px;
+}
+
+.z-modal-header {
+    display: inline;
+}
+
+.z-modal-title {
+    float: left;
+}
+.z-modal-close {
+    float: right;
+}
+
+.z-flex-content {
+
+}

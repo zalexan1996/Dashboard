@@ -1,0 +1,17 @@
+﻿
+.settings-div {
+    display: grid;
+    grid-template-columns: 80% 20%;
+    grid-template-rows: 50px;
+}
+
+
+.setting-text {
+    display: grid;
+    grid-column: 1;
+}
+
+.setting-value {
+    display: grid;
+    grid-column: 2;
+}
