@@ -35,3 +35,7 @@ window.setup = (id, config) => {
 window.FocusElement = function (id) {
     document.getElementById(id).focus();
 }
+
+function getElementBounds(element) {
+    return element.getBoundingClientRect();
+}
